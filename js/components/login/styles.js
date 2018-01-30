@@ -6,33 +6,63 @@ const { StyleSheet, Dimensions } = React;
 const deviceHeight = Dimensions.get('window').height;
 
 export default {
-  container: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: '#FBFAFA',
+  input: {
+    marginBottom: 10,
+    marginLeft: 20
   },
-  shadow: {
+  inputWrap: {
+    width: '80%',
+    height: 45,
+    borderRadius: 25,
+    backgroundColor: 'white',
+    marginTop: 7
+  },
+  icon: {
+    marginLeft: 20,
+    marginBottom: 10,
+    height:20,
+    width:20
+  },
+  button: {
+    width: 50,
+    width: '80%',
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#dd7d2a'
+  },
+  textLogin: {
+    fontSize: 22,
+    fontFamily: 'Roboto-light'
+  },
+  loginWith: {
+    textAlign: 'center',
+    fontSize: 18,
+    marginTop: 10,
+    fontFamily: 'Roboto-light',
+    color: '#303030'
+  },
+  forgotText: {
+    marginLeft: 20,
+    fontSize: 15,
+    fontFamily: 'Roboto-light',
+    color: '#303030'
+  },
+  checkboxText: {
+    fontFamily: 'Roboto-light',
+    fontWeight: '100',
+    color: '#303030'
+  },
+  background: {
+    justifyContent: 'center',
+    alignItems: 'center',
     flex: 1,
     width: null,
-    height: null,
+    height: deviceHeight,
   },
-  bg: {
-    flex: 1,
-    marginTop: deviceHeight / 1.75,
-    paddingTop: 20,
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingBottom: 30,
-    bottom: 0,
-  },
-  input: {
-    marginBottom: 20,
-  },
-  btn: {
-    marginTop: 20,
-    alignSelf: 'center',
-  },
+  iconLogin:{
+    height:60,
+    width:60,
+    marginLeft:15
+  }
 };

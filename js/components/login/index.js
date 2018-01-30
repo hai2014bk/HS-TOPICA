@@ -1,48 +1,28 @@
 import React, { Component } from "react";
-import { Image } from "react-native";
+import { Image, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
+import { CheckBox, Icon } from 'react-native-elements'
 import {
   Container,
   Content,
   Item,
   Input,
   Button,
-  Icon,
   View,
-  Text
+  Text,
+  Body
 } from "native-base";
 import { Field, reduxForm } from "redux-form";
 import { setUser } from "../../actions/user";
 import styles from "./styles";
 
-const background = require("../../../images/shadow.png");
+const background = require("../../../images/background.jpg");
+const mail = require("../../../images/mail.png");
+const lock = require("../../../images/lock.png");
+const facebook = require("../../../images/facebook.png");
+const twitter = require("../../../images/twitter.png");
+const google = require("../../../images/google.png");
 
-const validate = values => {
-  const error = {};
-  error.email = "";
-  error.password = "";
-  var ema = values.email;
-  var pw = values.password;
-  if (values.email === undefined) {
-    ema = "";
-  }
-  if (values.password === undefined) {
-    pw = "";
-  }
-  if (ema.length < 8 && ema !== "") {
-    error.email = "too short";
-  }
-  if (!ema.includes("@") && ema !== "") {
-    error.email = "@ not included";
-  }
-  if (pw.length > 12) {
-    error.password = "max 11 characters";
-  }
-  if (pw.length < 5 && pw.length > 0) {
-    error.password = "Weak";
-  }
-  return error;
-};
 
 class Login extends Component {
   static propTypes = {
@@ -51,60 +31,63 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: ""
+      email: '',
+      password: '',
+      remember: false
     };
-    this.renderInput = this.renderInput.bind(this);
   }
 
-  setUser(name) {
-    this.props.setUser(name);
+  onLogin() {
+    this.props.navigation.navigate("Home")
   }
-  renderInput({
-    input,
-    label,
-    type,
-    meta: { touched, error, warning },
-    inputProps
-  }) {
-    var hasError = false;
-    if (error !== undefined) {
-      hasError = true;
-    }
-    return (
-      <Item error={hasError}>
-        <Icon active name={input.name === "email" ? "person" : "unlock"} />
-        <Input
-          placeholder={input.name === "email" ? "EMAIL" : "PASSWORD"}
-          {...input}
-        />
-        {hasError
-          ? <Item style={{ borderColor: "transparent" }}>
-              <Icon active style={{ color: "red", marginTop: 5 }} name="bug" />
-              <Text style={{ fontSize: 15, color: "red" }}>{error}</Text>
-            </Item>
-          : <Text />}
-      </Item>
-    );
-  }
+
   render() {
     return (
       <Container>
-        <View style={styles.container}>
-          <Content>
-            <Image source={background} style={styles.shadow}>
-              <View style={styles.bg}>
-                <Field name="email" component={this.renderInput} />
-                <Field name="password" component={this.renderInput} />
-                <Button
-                  style={styles.btn}
-                  onPress={() => this.props.navigation.navigate("Home")}
-                >
-                  <Text>Login</Text>
-                </Button>
-              </View>
-            </Image>
-          </Content>
-        </View>
+        <Content keyboardShouldPersistTaps='handled'>
+          <Image resizeMode='stretch' source={background} style={styles.background} >
+            <View style={{ marginTop: 200 }}></View>
+            <View style={styles.inputWrap}>
+              <Item style={{ borderBottomWidth: 0 }}>
+                <Image source={mail} style={styles.icon} resizeMode='contain' />
+                <Input style={styles.input} onChangeText={(email) => this.setState({ email })} placeholder='Email address' />
+              </Item>
+            </View>
+            <View style={styles.inputWrap}>
+              <Item style={{ borderBottomWidth: 0 }}>
+                <Image source={lock} style={styles.icon} resizeMode='contain' />
+                <Input success onSubmitEditing={() => this.onLogin()} style={styles.input} secureTextEntry={true} onChangeText={(password) => this.setState({ password })} placeholder='Password' />
+              </Item>
+            </View>
+            <View style={{ flexDirection: 'row' }}>
+              <Item style={{ borderBottomWidth: 0, }}>
+                <CheckBox
+                  textStyle={styles.checkboxText}
+                  containerStyle={{ backgroundColor: 'transparent', borderColor: 'transparent' }}
+                  onPress={() => this.setState({ remember: !this.state.remember })}
+                  title='Duy trì đăng nhập'
+                  checked={this.state.remember}
+                />
+              </Item>
+              <Item style={{ borderBottomWidth: 0, }}>
+                <Text style={styles.forgotText}>Quên mật khẩu</Text>
+              </Item>
+            </View>
+            <Button onPress={() => this.onLogin()} rounded style={styles.button}><Text style={styles.textLogin}>ĐĂNG NHẬP</Text></Button>
+            <Text style={styles.loginWith}>Đăng nhập với</Text>
+            <View style={{ flexDirection: 'row', marginTop: 10 }}>
+              <TouchableOpacity>
+                <Image source={facebook} style={[styles.iconLogin]} />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Image source={twitter} style={styles.iconLogin} />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Image source={google} style={styles.iconLogin} />
+              </TouchableOpacity>
+            </View>
+          </Image>
+        </Content>
       </Container>
     );
   }
@@ -112,7 +95,6 @@ class Login extends Component {
 const LoginSwag = reduxForm(
   {
     form: "test",
-    validate
   },
   function bindActions(dispatch) {
     return {
