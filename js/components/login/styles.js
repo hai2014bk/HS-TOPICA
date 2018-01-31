@@ -33,23 +33,19 @@ export default {
   },
   textLogin: {
     fontSize: 22,
-    fontFamily: 'Roboto-light'
   },
   loginWith: {
     textAlign: 'center',
     fontSize: 18,
     marginTop: 10,
-    fontFamily: 'Roboto-light',
     color: '#303030'
   },
   forgotText: {
     marginLeft: 20,
     fontSize: 15,
-    fontFamily: 'Roboto-light',
     color: '#303030'
   },
   checkboxText: {
-    fontFamily: 'Roboto-light',
     fontWeight: '100',
     color: '#303030'
   },
