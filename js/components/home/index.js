@@ -76,19 +76,13 @@ class Home extends Component {
         </Header>
         <Content>
           <Grid style={styles.mt}>
-            {this.props.list.map((item, i) => (
-              <Row key={i}>
-                <TouchableOpacity
-                  style={styles.row}
-                  onPress={() =>
-                    this.props.navigation.navigate("BlankPage", {
-                      name: { item }
-                    })}
-                >
-                  <Text style={styles.text}>{item}</Text>
-                </TouchableOpacity>
-              </Row>
-            ))}
+            <TouchableOpacity
+              style={styles.row}
+              onPress={() =>
+                this.props.navigation.navigate("BlankPage")}
+            >
+              <Text style={styles.text}>Native Smile</Text>
+            </TouchableOpacity>
           </Grid>
         </Content>
       </Container>

@@ -69,9 +69,11 @@ class Login extends Component {
                   checked={this.state.remember}
                 />
               </Item>
-              <Item style={{ borderBottomWidth: 0, }}>
-                <Text style={styles.forgotText}>Quên mật khẩu</Text>
-              </Item>
+              <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center' }}>
+                <Item style={{ borderBottomWidth: 0, }}>
+                  <Text style={styles.forgotText}>Quên mật khẩu</Text>
+                </Item>
+              </TouchableOpacity>
             </View>
             <Button onPress={() => this.onLogin()} rounded style={styles.button}><Text style={styles.textLogin}>ĐĂNG NHẬP</Text></Button>
             <Text style={styles.loginWith}>Đăng nhập với</Text>
