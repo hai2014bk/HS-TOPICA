@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity,View } from "react-native";
 import { connect } from "react-redux";
 import BlankPage2 from "../blankPage2";
 import DrawBar from "../DrawBar";
@@ -17,9 +17,7 @@ import {
   Right
 } from "native-base";
 import { Grid, Row } from "react-native-easy-grid";
-
-import { setIndex } from "../../actions/list";
-import { openDrawer } from "../../actions/drawer";
+import { openDrawer } from "./actions";
 import styles from "./styles";
 
 class Home extends Component {
@@ -75,15 +73,13 @@ class Home extends Component {
           </Right>
         </Header>
         <Content>
-          <Grid style={styles.mt}>
-            <TouchableOpacity
-              style={styles.row}
-              onPress={() =>
-                this.props.navigation.navigate("BlankPage")}
+        <Button
+              transparent
+              onPress={() => DrawerNav.navigate("BlankPage2")}
+              style={{width:150, height:150, backgroundColor:'grey', margin:20, borderRadius:10}}
             >
-              <Text style={styles.text}>Native Smile</Text>
-            </TouchableOpacity>
-          </Grid>
+              <Text style={{color:'white'}}>Native smile</Text>
+            </Button>
         </Content>
       </Container>
     );
@@ -97,8 +93,6 @@ function bindAction(dispatch) {
   };
 }
 const mapStateToProps = state => ({
-  name: state.user.name,
-  list: state.list.list
 });
 
 const HomeSwagger = connect(mapStateToProps, bindAction)(Home);

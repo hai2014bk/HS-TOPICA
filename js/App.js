@@ -5,7 +5,7 @@ import CodePush from "react-native-code-push";
 import { Container, Content, Text, View } from "native-base";
 import Modal from "react-native-modalbox";
 import MainStackRouter from "./Routers/MainStackRouter";
-import ProgressBar from "./components/loaders/ProgressBar";
+import ProgressBar from "./containers/loaders/ProgressBar";
 
 import theme from "./themes/base-theme";
 

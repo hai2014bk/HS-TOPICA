@@ -13,7 +13,6 @@ import {
   Body
 } from "native-base";
 import { Field, reduxForm } from "redux-form";
-import { setUser } from "../../actions/user";
 import styles from "./styles";
 
 const background = require("../../../images/background.jpg");
