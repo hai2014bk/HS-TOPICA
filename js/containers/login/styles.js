@@ -33,12 +33,14 @@ export default {
   },
   textLogin: {
     fontSize: 22,
+    fontFamily:'Roboto'
   },
   loginWith: {
     textAlign: 'center',
     fontSize: 18,
     marginTop: 10,
-    color: '#303030'
+    color: '#303030',
+    fontFamily:'Roboto'
   },
   forgotText: {
     marginLeft: 20,
