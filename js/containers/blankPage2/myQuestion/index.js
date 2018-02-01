@@ -67,7 +67,7 @@ class MyQuestion extends Component {
     return (
       <Container style={{ paddingBottom: 20 }}>
         <Content>
-          <TouchableOpacity style={styles.addQuestionSection}>
+          <TouchableOpacity onPress={()=>this.props.navigation.navigate("BlankPage")} style={styles.addQuestionSection}>
             <View style={{ flexDirection: 'row' }}>
               <Image style={styles.iconPlus} source={plus} resizeMode='contain' />
               <Text style={styles.addQuestionText}>Thêm câu hỏi mới</Text>

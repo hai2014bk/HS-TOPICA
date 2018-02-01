@@ -75,7 +75,7 @@ class Home extends Component {
         <Content>
         <Button
               transparent
-              onPress={() => DrawerNav.navigate("BlankPage2")}
+              onPress={() => this.props.navigation.navigate("BlankPage2")}
               style={{width:150, height:150, backgroundColor:'grey', margin:20, borderRadius:10}}
             >
               <Text style={{color:'white'}}>Native smile</Text>
