@@ -20,8 +20,8 @@ export default {
   icon: {
     marginLeft: 20,
     marginBottom: 10,
-    height:20,
-    width:20
+    height: 20,
+    width: 20
   },
   button: {
     width: 50,
@@ -33,14 +33,14 @@ export default {
   },
   textLogin: {
     fontSize: 22,
-    fontFamily:'Roboto-Light'
+    fontFamily: 'Roboto'
   },
   loginWith: {
     textAlign: 'center',
     fontSize: 18,
     marginTop: 10,
     color: '#303030',
-    fontFamily:'Roboto-Light'
+    fontFamily: 'Roboto'
   },
   forgotText: {
     marginLeft: 20,
@@ -58,9 +58,15 @@ export default {
     width: null,
     height: deviceHeight,
   },
-  iconLogin:{
-    height:60,
-    width:60,
-    marginLeft:15
+  iconLogin: {
+    height: 60,
+    width: 60,
+    marginLeft: 15
+  },
+  alertText: {
+    color: 'red',
+    fontFamily: 'Roboto',
+    textAlign:'center',
+    fontSize:18 
   }
 };

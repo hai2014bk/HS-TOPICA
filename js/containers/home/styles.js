@@ -18,4 +18,9 @@ export default {
   mt: {
     marginTop: 18,
   },
+  image: {
+    width: '100%',
+    height: 280,
+    marginTop: -50
+  }
 };

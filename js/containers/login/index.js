@@ -32,12 +32,29 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
-      remember: false
+      remember: false,
+      alert: ''
     };
   }
 
   onLogin() {
     this.props.navigation.navigate("Home")
+  }
+
+  onValidate() {
+    if (this.state.email == '') {
+      this.setState({ alert: "Email can't be blank" })
+    } else if (this.checkSpaceAll(this.state.email)) {
+      this.setState({ alert: "Email can't be blank", email: '' })
+    } else if (!this.emailValidation(this.state.email)) {
+      this.setState({ alert: 'Email is invalid' })
+    } else if (this.state.password == '') {
+      this.setState({ alert: "Password can't be blank" })
+    } else if (this.checkSpaceAll(this.state.password)) {
+      this.setState({ alert: "Password can't be blank", password:'' })
+    } else {
+      this.props.navigation.navigate("Home")
+    }
   }
 
   render() {
@@ -46,6 +63,7 @@ class Login extends Component {
         <Content keyboardShouldPersistTaps='handled'>
           <Image resizeMode='stretch' source={background} style={styles.background} >
             <View style={{ marginTop: 200 }}></View>
+            <Text style={styles.alertText}>{this.state.alert}</Text>
             <View style={styles.inputWrap}>
               <Item style={{ borderBottomWidth: 0 }}>
                 <Image source={mail} style={styles.icon} resizeMode='contain' />
@@ -91,6 +109,17 @@ class Login extends Component {
         </Content>
       </Container>
     );
+  }
+
+  emailValidation(email) {
+    var re = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return re.test(email);
+  }
+  checkSpaceAll(text) {
+    if (!text.replace(/\s/g, '').length) {
+      return true
+    }
+    return false
   }
 }
 const LoginSwag = reduxForm(

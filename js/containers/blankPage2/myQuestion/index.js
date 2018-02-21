@@ -23,9 +23,9 @@ import {
 var list = [{ name: 'Nguyen van A', email: 'Harrypotter@gmail.com', status: '16 phút trước' }, { name: 'Nguyen van B', email: 'Hermione@gmail.com', status: '28 phút trước' }]
 
 class MyQuestion extends Component {
-  renderRow(item) {
+  renderRow(item, index) {
     return (
-      <View style={styles.listItemWrap}>
+      <View key={index} style={styles.listItemWrap}>
         <View style={{ flexDirection: 'row' }}>
           <Thumbnail style={styles.image} source={{ uri: 'https://i.imgur.com/kSpaIGX.jpg' }} />
           <View style={styles.nameField}>
@@ -67,16 +67,16 @@ class MyQuestion extends Component {
     return (
       <Container style={{ paddingBottom: 20 }}>
         <Content>
-          <TouchableOpacity style={styles.addQuestionSection}>
+          <TouchableOpacity onPress={()=>this.props.navigation.navigate("BlankPage")} style={styles.addQuestionSection}>
             <View style={{ flexDirection: 'row' }}>
               <Image style={styles.iconPlus} source={plus} resizeMode='contain' />
               <Text style={styles.addQuestionText}>Thêm câu hỏi mới</Text>
               <Icon name='ios-arrow-forward-outline' style={styles.iconArrowAdd} />
             </View>
           </TouchableOpacity>
-          <List style={{ marginTop: 10 }}>
+          <List style={{ marginTop: 5 }}>
             {
-              list.map((item) => this.renderRow(item))
+              list.map((item, index) => this.renderRow(item, index))
             }
           </List>
         </Content>
