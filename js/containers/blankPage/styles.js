@@ -45,7 +45,7 @@ export default {
       margin:5,
     },
     button:{
-      width:80,
+      width:105,
       height:30,
       borderRadius: 15,
       justifyContent:"center",
@@ -80,8 +80,10 @@ export default {
         paddingRight: 10,
         borderRadius: 3,
         backgroundColor: Colors.MAINCOLOR,
-        paddingLeft: 0,
-        marginLeft: -5
+        paddingLeft: 10,
+        marginLeft: -5,
+        borderTopLeftRadius:10,
+        borderBottomLeftRadius:10
     },
     h1Text:{
       color:Colors.MAINCOLOR,

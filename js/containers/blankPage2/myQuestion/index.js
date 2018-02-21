@@ -23,9 +23,9 @@ import {
 var list = [{ name: 'Nguyen van A', email: 'Harrypotter@gmail.com', status: '16 phút trước' }, { name: 'Nguyen van B', email: 'Hermione@gmail.com', status: '28 phút trước' }]
 
 class MyQuestion extends Component {
-  renderRow(item) {
+  renderRow(item, index) {
     return (
-      <View style={styles.listItemWrap}>
+      <View key={index} style={styles.listItemWrap}>
         <View style={{ flexDirection: 'row' }}>
           <Thumbnail style={styles.image} source={{ uri: 'https://i.imgur.com/kSpaIGX.jpg' }} />
           <View style={styles.nameField}>
@@ -74,9 +74,9 @@ class MyQuestion extends Component {
               <Icon name='ios-arrow-forward-outline' style={styles.iconArrowAdd} />
             </View>
           </TouchableOpacity>
-          <List style={{ marginTop: 10 }}>
+          <List style={{ marginTop: 5 }}>
             {
-              list.map((item) => this.renderRow(item))
+              list.map((item, index) => this.renderRow(item, index))
             }
           </List>
         </Content>

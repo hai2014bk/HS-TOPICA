@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { TouchableOpacity,View } from "react-native";
+import { TouchableOpacity, View, Image } from "react-native";
 import { connect } from "react-redux";
 import BlankPage2 from "../blankPage2";
 import DrawBar from "../DrawBar";
 import { DrawerNavigator, NavigationActions } from "react-navigation";
+import HeaderApp from '../../components/Header';
+import Swiper from 'react-native-swiper'
 import {
   Container,
   Header,
@@ -19,6 +21,7 @@ import {
 import { Grid, Row } from "react-native-easy-grid";
 import { openDrawer } from "./actions";
 import styles from "./styles";
+var list = ['https://i.imgur.com/5Dt9usR.png', 'https://i.imgur.com/5Dt9usR.png', 'https://i.imgur.com/5Dt9usR.png', 'https://i.imgur.com/5Dt9usR.png']
 
 class Home extends Component {
   static navigationOptions = {
@@ -36,50 +39,44 @@ class Home extends Component {
     Actions.blankPage();
   }
 
+  renderBanner(item) {
+    return (
+      <View style={styles.slide}>
+        <Image resizeMode='stretch' style={styles.image} source={{ uri: 'https://i.imgur.com/5Dt9usR.png' }} />
+      </View>
+    )
+  }
+
   render() {
     console.log(DrawNav, "786785786");
     return (
       <Container style={styles.container}>
-        <Header>
-          <Left>
-
-            <Button
-              transparent
-              onPress={() => {
-                DrawerNav.dispatch(
-                  NavigationActions.reset({
-                    index: 0,
-                    actions: [NavigationActions.navigate({ routeName: "Home" })]
-                  })
-                );
-                DrawerNav.goBack();
-              }}
-            >
-              <Icon active name="power" />
-            </Button>
-          </Left>
-
-          <Body>
-            <Title>Home</Title>
-          </Body>
-
-          <Right>
-            <Button
-              transparent
-              onPress={() => DrawerNav.navigate("DrawerOpen")}
-            >
-              <Icon active name="menu" />
-            </Button>
-          </Right>
-        </Header>
+        <HeaderApp
+          iconLeft={'menu'}
+          leftTouch={() => this.props.navigation.navigate("DrawBar")}
+          title={'Home'}
+          iconRight={'search'}
+        />
         <Content>
-        <Button
-              transparent
-              onPress={() => this.props.navigation.navigate("BlankPage2")}
-              style={{width:150, height:150, backgroundColor:'grey', margin:20, borderRadius:10}}
+          <View style={{paddingLeft:10, paddingRight:10}}>
+            <Swiper
+              style={styles.wrapper} height={240}
+              activeDot={<View style={{ height: 14, width: 14, backgroundColor: '#e7a23f', borderRadius: 7, marginRight: 5 }}></View>}
+              dot={<View style={{ height: 10, width: 10, borderRadius: 5, backgroundColor: '#848484', marginRight: 5 }}></View>}
+              paginationStyle={{ position: 'absolute', bottom: 0 }}
             >
-              <Text style={{color:'white'}}>Native smile</Text>
-            </Button>
+              {
+                list.map((item) => this.renderBanner(item))
+              }
+            </Swiper>
+          </View>
+          <Button
+            transparent
+            onPress={() => this.props.navigation.navigate("BlankPage2")}
+            style={{ width: 150, height: 150, backgroundColor: 'grey', margin: 20, borderRadius: 10 }}
+          >
+            <Text style={{ color: 'white' }}>Native smile</Text>
+          </Button>
         </Content>
       </Container>
     );

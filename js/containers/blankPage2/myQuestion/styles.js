@@ -12,7 +12,7 @@ export default {
 
     listItemWrap: {
         backgroundColor: 'white',
-        marginTop: 7,
+        marginTop: 13,
         borderTopRightRadius: 5,
         borderTopLeftRadius: 5,
         borderBottomRightRadius: 10,
@@ -68,7 +68,7 @@ export default {
         fontSize: 12,
         color: '#919191',
         marginLeft: 5,
-        marginTop: 1
+        marginTop: 2
     },
     footerTextSee: {
         fontSize: 12,
@@ -77,7 +77,7 @@ export default {
         marginTop: 3
     },
     description: {
-        fontSize: 14
+        fontSize: 14,
     },
     buttonMore: {
         height: 25,

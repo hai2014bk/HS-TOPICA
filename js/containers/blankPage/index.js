@@ -6,7 +6,7 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 import TouchAble from 'react-native-touch-able';
 import { Avatar, Icon } from 'react-native-elements';
 import { Dropdown } from 'react-native-material-dropdown';
-
+import Swiper from 'react-native-swiper'
 import HeaderApp from '../../components/Header';
 
 import styles from './styles';
@@ -85,7 +85,7 @@ class BlankPage extends Component {
                         renderBase={(props, label, value, renderAccessory) => (
                             <Item style={styles.selectWrapper}>
                                 <Input
-                                    style={{ height: 30, color: 'white' }}
+                                    style={{ height: 40, color: 'white' }}
                                     value={this.state.typeQuestion}
                                     editable={false}
                                     placeholder={'Lựa chọn hình thức'}
@@ -108,9 +108,9 @@ class BlankPage extends Component {
                 <View style={styles.centerContainer}>
                     <Text style={styles.blackH1Text}> Tiêu đề </Text>
                     <Item style={styles.headerItemWrapper}>
-                        <View style={{ backgroundColor: Colors.MAINCOLOR, height: '100%', width: 5 }} />
+                        <View style={{ backgroundColor: Colors.MAINCOLOR, height: '100%', width: 5, borderTopLeftRadius:3, borderBottomLeftRadius:3 }} />
                         <Input
-                            style={{ height: 30, color: 'black', fontWeight: 'bold' }}
+                            style={{ height: 40, color: 'black', fontWeight: 'bold', marginLeft:3 }}
                             value={this.state.headerQuestion}
                             editable={true}
                             autoCapitalize={'characters'}
@@ -121,7 +121,7 @@ class BlankPage extends Component {
                 </View>
                 <View style={styles.centerContainer}>
                     <Text style={styles.blackH1Text}> Chi tiết nội dung</Text>
-                    <View style={{minHeight: 160, backgroundColor: 'white', width: '100%', padding: 5, borderRadius: 3 }}>
+                    <View style={{minHeight: 160, backgroundColor: 'white', width: '100%', padding: 5, borderRadius: 5, marginTop:10 }}>
                         <Input
                             style={{width: '100%', fontSize: 13, color: 'black' }}
                             value={this.state.question}
@@ -144,7 +144,7 @@ class BlankPage extends Component {
     }
     renderBtns() {
         return (
-            <Item style={{marginTop:10,justifyContent:"space-between",borderBottomWidth:0,alignSelf: 'flex-end', width:165}}>
+            <Item style={{marginTop:10,justifyContent:"space-between",borderBottomWidth:0,alignSelf: 'flex-end', width:220}}>
                 <TouchAble onTouch={()=>console.log("send")} style={[styles.button,{backgroundColor:Colors.MAINCOLOR}]}>
                     <Text style={{color:"white"}}> Gửi </Text>
                 </TouchAble>
@@ -163,6 +163,7 @@ class BlankPage extends Component {
                     iconLeft={'chevron-with-circle-left'}
                     leftTouch={() => this.props.navigation.goBack()}
                     title={'Câu hỏi của tôi'}
+                    iconRight={'edit'}
                 />
                 <Content>
                     {this.renderTop()}

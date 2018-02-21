@@ -4,7 +4,7 @@ import { Item, Input, View, Text, Button, Left, Right, Body, Header, Label } fro
 import TouchAble from 'react-native-touch-able';
 import { connect } from 'react-redux';
 import { Icon } from 'react-native-elements'
-
+import * as Colors from '../../config/colors';
 import styles from './styles';
 
 class HeaderApp extends Component {
@@ -53,7 +53,7 @@ class HeaderApp extends Component {
                     }}
                     style={styles.iconWrapperRight}
                 >
-                    <Icon name={iconRight} style={{ fontSize: 20, color: 'black' }} />
+                    <Icon name={iconRight} style={{ fontSize: 20, color: 'white' }} type='font-awesome' color="white" />
                 </TouchAble>
             );
         }
@@ -66,7 +66,7 @@ class HeaderApp extends Component {
                     }}
                     style={styles.iconWrapperRight}
                 >
-                    <Text style={{ fontSize: 15, color: primary }}>{rightTittle}</Text>
+                    <Text style={{ fontSize: 15 }}>{rightTittle}</Text>
                 </TouchAble>
             );
         }
@@ -76,7 +76,7 @@ class HeaderApp extends Component {
         var title = this.props.title;
         return (
             <Header style={styles.header}>
-                <StatusBar backgroundColor="blue" barStyle="light-content" />
+                <StatusBar backgroundColor={Colors.MAINCOLOR} barStyle="light-content" />
                 <Left style={{ flexDirection: 'row' }}>{this.renderLeft()}</Left>
                 <Item style={styles.titleWrapper}>
                     <Label style={styles.title}> {title} </Label>
