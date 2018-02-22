@@ -4,6 +4,7 @@ import { View, TouchableOpacity, Image } from "react-native";
 // import styles from "./styles";
 const see = require("../../../../images/see.png");
 const comment = require("../../../../images/comments.png");
+import {fetchAllQuestion} from "./actions"
 import { Button } from 'react-native-elements'
 import {
   Container,
@@ -21,6 +22,10 @@ import {
 } from "native-base";
 var list = [{ name: 'Nguyen van A', email: 'Harrypotter@gmail.com', status: '16 phút trước' }, { name: 'Nguyen van B', email: 'Hermione@gmail.com', status: '28 phút trước' }]
 class PopularQuestion extends Component {
+
+  componentDidMount() {
+    this.props.fetchAllQuestion()
+  }
 
   renderRow(item, index) {
     return (
@@ -179,4 +184,12 @@ var styles = {
   }
 }
 
-export default PopularQuestion;
+function bindActions(dispatch) {
+  return {
+    fetchAllQuestion: () => dispatch(fetchAllQuestion())
+  }
+}
+const mapStateToProps = state => ({
+});
+
+export default connect(mapStateToProps, bindActions)(PopularQuestion);
