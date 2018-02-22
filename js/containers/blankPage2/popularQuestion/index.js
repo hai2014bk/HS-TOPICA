@@ -26,7 +26,7 @@ class PopularQuestion extends Component {
     return (
       <View key={index} style={styles.listItemWrap}>
         <View style={{ flexDirection: 'row' }}>
-          <Thumbnail style={styles.image} source={{ uri: 'https://i.imgur.com/kSpaIGX.jpg' }} />
+          <Image style={styles.image} source={{ uri: 'https://i.imgur.com/kSpaIGX.jpg' }} />
           <View style={styles.nameField}>
             <Text style={styles.name}>{item.name}</Text>
             <Text style={styles.email}>{item.email}</Text>
@@ -43,14 +43,14 @@ class PopularQuestion extends Component {
         </View>
         <View style={styles.divider}></View>
         <View style={styles.footer}>
-          <Left style={{ flexDirection: 'row' }}>
+          {/* <Left style={{ flexDirection: 'row' }}>
             <Image resizeMode='contain' style={styles.icon} source={see} />
             <Text style={styles.footerTextSee}>1390</Text>
             <View style={{ flexDirection: 'row', paddingTop: 2 }}>
               <Image resizeMode='contain' style={styles.icon} source={comment} />
               <Text style={styles.footerTextComment}>10 bình luận</Text>
             </View>
-          </Left>
+          </Left> */}
           <Right>
             <TouchableOpacity style={styles.buttonMore}>
               <Text style={styles.textMore}>Xem thêm</Text>
@@ -83,6 +83,7 @@ var styles = {
     marginLeft: 4,
     height: 40,
     width: 40,
+    borderRadius:20
   },
 
   listItemWrap: {
