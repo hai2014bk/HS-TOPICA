@@ -1,16 +1,16 @@
 import * as  APIRequest from "../../../services/APIService"
 import * as mConstants from '../../../config/Constants'
 
-export function fetchCategorySuccess(data) {
+export function fetchAllSuccess(data) {
 	return {
-		type: "FETCH_CATEGORY_SUCCESS",
+		type: mConstants.GET_ALL_QUESTION_SUCCESS,
 		data
 	};
 }
 
-export function fetchCategoryFailed(error) {
+export function fetchAllFailed(error) {
 	return {
-		type: "FETCH_CATEGORY_FAILED",
+		type: mConstants.GET_ALL_QUESTION_FAILED,
 		error
 	};
 }
@@ -22,9 +22,11 @@ export function fetchAllQuestion() {
     }
 	return dispatch => {
 		APIRequest.APIRequestPOST(url,param,data => {
-            console.log(data)
+			console.log(data)
+			dispatch(fetchAllSuccess(data))
         },
     error =>{
+		dispatch(fetchAllFailed(error))
         console.log("error",error)
     })
 	};
