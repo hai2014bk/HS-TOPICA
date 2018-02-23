@@ -39,7 +39,7 @@ class BlankPage2 extends Component {
           iconRight={'edit'}
         />
 
-        <Content padder>
+        <Content scrollEnabled={false} padder>
           <Swiper
             style={styles.wrapper} height={240}
             activeDot={<View style={{ height: 14, width: 14, backgroundColor: '#e7a23f', borderRadius: 7, marginRight: 5 }}></View>}

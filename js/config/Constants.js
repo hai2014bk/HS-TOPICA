@@ -1,0 +1,1 @@
+export const GET_ALL_QUESTION = "http://nativesmile.topica.edu.vn/modules/index.php/api/H2472/getAllThreadInCourse?page="
