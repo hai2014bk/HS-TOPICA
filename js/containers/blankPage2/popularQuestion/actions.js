@@ -19,10 +19,9 @@ export function fetchAllQuestion() {
     let url = mConstants.GET_ALL_QUESTION + "1"
     let param = {
         courseID:1333
-    }
+	}
 	return dispatch => {
 		APIRequest.APIRequestPOST(url,param,data => {
-			console.log(data)
 			dispatch(fetchAllSuccess(data))
         },
     error =>{

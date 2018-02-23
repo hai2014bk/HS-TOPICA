@@ -13,7 +13,6 @@ export function APIRequestPOST(url, param, successCallback, errorCallback) {
         password:"topica@123##"
     }
     var authen = 'Basic ' + btoa(user.name + ":" + user.password)
-    console.log("dasdaw",formData,authen,user)
         fetch(url, {
             method: 'POST',
             headers: {
@@ -21,12 +20,11 @@ export function APIRequestPOST(url, param, successCallback, errorCallback) {
             },
             body:formData
         }).then((response) => {
-            console.log('111111111111111111111111111111111111',response)                     
             response.json().then((responseJson) => {
                console.log('111111111111111111111111111111111111',responseJson)                     
-               let model = responseJson.model
-                if (model) {
-                    if (responseJson.requestStatus == "Success") {
+               let status = responseJson.status
+                if (status == 200) {
+                    if (responseJson.message == "success") {
                         successCallback(responseJson)
                     } else {
                         errorCallback(responseJson.errorMessage)
