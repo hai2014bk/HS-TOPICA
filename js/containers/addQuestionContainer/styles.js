@@ -78,12 +78,12 @@ export default {
     },
     selectWrapper: {
         paddingRight: 10,
-        borderRadius: 3,
+        borderRadius: 5,
         backgroundColor: Colors.MAINCOLOR,
         paddingLeft: 10,
         marginLeft: -5,
-        borderTopLeftRadius:10,
-        borderBottomLeftRadius:10
+        borderTopLeftRadius:5,
+        borderBottomLeftRadius:5
     },
     h1Text:{
       color:Colors.MAINCOLOR,

@@ -20,7 +20,7 @@ import {
   Body
 } from "native-base";
 var list = ['https://i.imgur.com/5Dt9usR.png', 'https://i.imgur.com/5Dt9usR.png', 'https://i.imgur.com/5Dt9usR.png', 'https://i.imgur.com/5Dt9usR.png']
-class BlankPage2 extends Component {
+class MainNativeSmile extends Component {
 
   renderBanner(item) {
     return (
@@ -73,4 +73,4 @@ var styles = {
   }
 }
 
-export default BlankPage2;
+export default MainNativeSmile;

@@ -1,5 +1,7 @@
 
+import * as mConstant from "./Constants"
 export type Action =
+
   { type: 'PUSH_NEW_ROUTE', route: string }
     | { type: 'POP_ROUTE' }
     | { type: 'POP_TO_ROUTE', route: string }
@@ -10,6 +12,7 @@ export type Action =
     | { type: 'SET_USER', name: string}
     | { type: 'SET_LIST', list: string}
     | {type: "GET_ALL_QUESTION_SUCCESS"}
+
 
 
 export type Dispatch = (action:Action | Array<Action>) => any;

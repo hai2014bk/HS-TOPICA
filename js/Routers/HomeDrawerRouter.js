@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import Home from "../containers/home/";
-import BlankPage from "../containers/blankPage";
+import AddQuestionContainer from "../containers/addQuestionContainer"
 import { DrawerNavigator } from "react-navigation";
 import DrawBar from "../containers/DrawBar";
 export default (DrawNav = DrawerNavigator(
   {
     Home: { screen: Home },
-    BlankPage: { screen: BlankPage }
+    AddQuestionContainer: { screen: AddQuestionContainer }
   },
   {
     contentComponent: props => <DrawBar {...props} />

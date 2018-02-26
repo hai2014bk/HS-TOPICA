@@ -154,7 +154,7 @@ class MyQuestion extends Component {
       <Container style={{ paddingBottom: 20 }}>
         <Content>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("BlankPage")}
+            onPress={() => this.props.navigation.navigate("AddQuestion")}
             style={styles.addQuestionSection}
           >
             <View style={{ flexDirection: "row" }}>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { TouchableOpacity, View, Image } from "react-native";
 import { connect } from "react-redux";
-import BlankPage2 from "../blankPage2";
+import MainNativeSmile from "../mainNativeSmile";
 import DrawBar from "../DrawBar";
 import { DrawerNavigator, NavigationActions } from "react-navigation";
 import HeaderApp from '../../components/Header';
@@ -36,7 +36,7 @@ class Home extends Component {
 
   newPage(index) {
     this.props.setIndex(index);
-    Actions.blankPage();
+    Actions.AddQuestion();
   }
 
   renderBanner(item) {
@@ -72,7 +72,7 @@ class Home extends Component {
           </View>
           <Button
             transparent
-            onPress={() => this.props.navigation.navigate("BlankPage2")}
+            onPress={() => this.props.navigation.navigate("MainNativeSmile")}
             style={{ width: 150, height: 150, backgroundColor: 'grey', margin: 20, borderRadius: 10 }}
           >
             <Text style={{ color: 'white' }}>Native smile</Text>
@@ -96,7 +96,7 @@ const HomeSwagger = connect(mapStateToProps, bindAction)(Home);
 const DrawNav = DrawerNavigator(
   {
     Home: { screen: HomeSwagger },
-    BlankPage2: { screen: BlankPage2 }
+    MainNativeSmile: { screen: MainNativeSmile }
   },
   {
     contentComponent: props => <DrawBar {...props} />

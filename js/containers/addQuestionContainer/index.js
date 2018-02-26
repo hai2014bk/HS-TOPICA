@@ -8,11 +8,15 @@ import { Avatar, Icon } from 'react-native-elements';
 import { Dropdown } from 'react-native-material-dropdown';
 import Swiper from 'react-native-swiper'
 import HeaderApp from '../../components/Header';
+import {fetchInfoAdd,addQuestion} from "./actions"
 
 import styles from './styles';
 import * as Colors from '../../config/colors';
+import { addQuestionReducer } from './reducer';
 const radioImage = require('../../../images/radio_View.png');
-class BlankPage extends Component {
+
+
+class AddQuestionContainer extends Component {
     static navigationOptions = {
         header: null
     };
@@ -27,9 +31,34 @@ class BlankPage extends Component {
         this.state = {
             typeQuestion: null,
             headerQuestion: '',
-            question: ''
+            typeQuestionText:null,
+            question: '',
+            typeQuestionArray:[]
         };
     }
+
+    componentDidMount(){
+        this.props.fetchInfoAdd()
+    }
+
+    componentWillReceiveProps(props) {
+        if(props.getInfoAddReducer.getInfoAdd.success && props.getInfoAddReducer.getInfoAdd.isDone){
+            console.log(props.getInfoAddReducer)
+            var typeQuestionArray = []
+            var typeQuestions = props.getInfoAddReducer.getInfoAdd.data.data.loai_cau_hoi
+            for (i in typeQuestions){
+                var type = {
+                    value: typeQuestions[i].topicname,
+                    id : typeQuestions[i].id
+                }
+                typeQuestionArray.push(type)
+            }
+            this.setState({typeQuestionArray})
+        }
+        if (props.addQuestionReducer.addQuestion.success && props.addQuestionReducer.addQuestion.isDone) {
+            console.log("add thanah cong")
+        }
+      }
 
     renderTop() {
         return (
@@ -65,17 +94,8 @@ class BlankPage extends Component {
     }
 
     renderCenter() {
-        let data = [
-            {
-                value: 'Banana'
-            },
-            {
-                value: 'Mango'
-            },
-            {
-                value: 'Pear'
-            }
-        ];
+        let data = this.state.typeQuestionArray
+        console.log("dasdas",data,this.state.typeQuestionArray)
         return (
             <View style={{ paddingTop: 15 }}>
                 <View style={styles.centerContainer}>
@@ -86,7 +106,7 @@ class BlankPage extends Component {
                             <Item style={styles.selectWrapper}>
                                 <Input
                                     style={{ height: 40, color: 'white' }}
-                                    value={this.state.typeQuestion}
+                                    value={this.state.typeQuestionText}
                                     editable={false}
                                     placeholder={'Lựa chọn hình thức'}
                                     pointerEvents="none"
@@ -95,13 +115,13 @@ class BlankPage extends Component {
                                 <Icon size={18} type="font-awesome" color="white" name={'sort-down'} />
                             </Item>
                         )}
-                        dropdownPosition={-2.6}
+                        dropdownPosition={1}
                         containerStyle={{ marginLeft: 5, marginTop: 5, width: '100%' }}
                         data={data}
                         rippleCentered={true}
                         rippleInsets={{ top: 0, bottom: 0 }}
                         onChangeText={(value, index, data) => {
-                            this.setState({ typeQuestion: value });
+                            this.setState({ typeQuestionText: value,typeQuestion:data[index].id });
                         }}
                     />
                 </View>
@@ -142,10 +162,22 @@ class BlankPage extends Component {
             </View>
         );
     }
+    submitQuestion(){
+        var params = {
+            answername:this.state.headerQuestion,
+            topicid:this.state.typeQuestion,
+            answerdes:this.state.question,
+            courseid:1333,
+            groupid:6,
+            userid:20173
+        }
+        this.props.addQuestion(params)
+
+    }
     renderBtns() {
         return (
             <Item style={{marginTop:10,justifyContent:"space-between",borderBottomWidth:0,alignSelf: 'flex-end', width:220}}>
-                <TouchAble onTouch={()=>console.log("send")} style={[styles.button,{backgroundColor:Colors.MAINCOLOR}]}>
+                <TouchAble onTouch={()=>this.submitQuestion()} style={[styles.button,{backgroundColor:Colors.MAINCOLOR}]}>
                     <Text style={{color:"white"}}> Gửi </Text>
                 </TouchAble>
                 <TouchAble onTouch={()=>this.props.navigation.goBack()} style={[styles.button,{backgroundColor:"gray"}]}>
@@ -176,10 +208,15 @@ class BlankPage extends Component {
 
 function bindAction(dispatch) {
     return {
-        openDrawer: () => dispatch(openDrawer())
+        openDrawer: () => dispatch(openDrawer()),
+        fetchInfoAdd:() => dispatch(fetchInfoAdd()),
+        addQuestion:(param) => dispatch(addQuestion(param))
     };
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+    getInfoAddReducer: state.getInfoAddReducer,
+    addQuestionReducer: state.addQuestionReducer
+});
 
-export default connect(mapStateToProps, bindAction)(BlankPage);
+export default connect(mapStateToProps, bindAction)(AddQuestionContainer);
