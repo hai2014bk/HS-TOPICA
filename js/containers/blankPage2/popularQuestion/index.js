@@ -24,28 +24,22 @@ import {
   ListItem,
   Thumbnail
 } from "native-base";
-var list = [
-  {
-    name: "Nguyen van A",
-    email: "Harrypotter@gmail.com",
-    status: "16 phút trước"
-  },
-  { name: "Nguyen van B", email: "Hermione@gmail.com", status: "28 phút trước" }
-];
 class PopularQuestion extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      layout: "list",
+      data: [],
+    };
+  }
+
   componentDidMount() {
     this.props.fetchAllQuestion();
   }
 
   componentWillReceiveProps(props) {
-    console.log("props", props);
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      layout: "list"
-    };
+    let data = props.fetch.data.data;
+    this.setState({ data });
   }
 
   renderRow = (item, index, separator) => {
@@ -54,24 +48,23 @@ class PopularQuestion extends Component {
         <View style={{ flexDirection: "row" }}>
           <Image
             style={styles.image}
-            source={{ uri: "https://i.imgur.com/kSpaIGX.jpg" }}
+            source={{ uri: item.avatar }}
           />
           <View style={styles.nameField}>
-            <Text style={styles.name}>{item.name}</Text>
-            <Text style={styles.email}>{item.email}</Text>
+            <Text style={styles.name}>{item.fullname}</Text>
+            <Text style={styles.email}>{item.username}</Text>
           </View>
           <Right>
-            <Text style={styles.status}>{item.status}</Text>
+            <Text style={styles.status}>{item.time}</Text>
           </Right>
         </View>
         <View style={styles.divider} />
         <View style={styles.body}>
           <Text style={styles.title}>
-            NativeBase is a free and open source UI component
+            {item.answername}
           </Text>
           <Text style={styles.description}>
-            Create React Native project using the CRNA CLI. Refer this link for
-            additional information CRNA{" "}
+            {item.answerdes}
           </Text>
         </View>
         <View style={styles.divider} />
@@ -103,7 +96,7 @@ class PopularQuestion extends Component {
       let skip = (page - 1) * pageLimit;
 
       //Generate dummy data
-      let rowData = list;
+      let rowData = this.state.data;
       // rowData = Array.from(
       //   { length: pageLimit },
       //   (value, index) => `item -> ${index + skip}`
@@ -123,25 +116,30 @@ class PopularQuestion extends Component {
   };
 
   render() {
+    let renderMain = null;
+    if (this.state.data.length > 0) {
+      renderMain = (
+        <UltimateListView
+          onFetch={this.onFetch}
+          ref={ref => (this.listView = ref)}
+          key={this.state.layout}
+          keyExtractor={(item, index) => `${index} - ${item}`}
+          refreshableMode="advanced" // basic or advanced
+          item={this.renderRow} // this takes three params (item, index, separator)
+          displayDate
+          arrowImageStyle={{ width: 20, height: 20, resizeMode: "contain" }}
+        />
+      );
+    }else{
+      renderMain = (
+        <Text style={{textAlign:'center', marginTop:40}}>There are no questions</Text>
+      )
+    }
     return (
       <Container style={{ paddingBottom: 20 }}>
-        <Content>
-          {/* <List>
-            {
-              list.map((item, index) => this.renderRow(item, index))
-            }
-          </List> */}
-          <UltimateListView
-            onFetch={this.onFetch}
-            ref={ref => (this.listView = ref)}
-            key={this.state.layout}
-            keyExtractor={(item, index) => `${index} - ${item}`}
-            refreshableMode="advanced" // basic or advanced
-            item={this.renderRow} // this takes three params (item, index, separator)
-            displayDate
-            arrowImageStyle={{ width: 20, height: 20, resizeMode: "contain" }}
-          />
-        </Content>
+        <View>
+          {renderMain}
+        </View>
       </Container>
     );
   }
@@ -256,7 +254,7 @@ function bindActions(dispatch) {
   };
 }
 const mapStateToProps = state => ({
-  fetch: state.fetchAllQuestion
+  fetch: state.getAllQuestionReducer
 });
 
 export default connect(mapStateToProps, bindActions)(PopularQuestion);
