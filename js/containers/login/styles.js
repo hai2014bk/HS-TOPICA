@@ -24,15 +24,17 @@ export default {
     width: 20
   },
   button: {
-    width: 50,
+    height: 45,
     width: '80%',
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#dd7d2a'
+    backgroundColor: '#dd7d2a',
+    borderRadius:22
   },
   textLogin: {
     fontSize: 22,
+    color:'white',
     fontFamily: 'Roboto'
   },
   loginWith: {

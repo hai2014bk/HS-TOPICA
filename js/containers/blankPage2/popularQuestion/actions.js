@@ -1,5 +1,5 @@
-import * as  APIRequest from "../../../services/APIService"
-import * as mConstants from '../../../config/Constants'
+import * as APIRequest from "../../../services/APIService";
+import * as mConstants from "../../../config/Constants";
 
 export function fetchAllSuccess(data) {
 	return {

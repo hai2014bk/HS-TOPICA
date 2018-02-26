@@ -83,7 +83,7 @@ class Login extends Component {
                 </Item>
               </TouchableOpacity>
             </View>
-            <Button onPress={() => this.onLogin()} rounded style={styles.button}><Text style={styles.textLogin}>ĐĂNG NHẬP</Text></Button>
+            <TouchableOpacity onPress={() => this.onLogin()} style={styles.button}><Text style={styles.textLogin}>ĐĂNG NHẬP</Text></TouchableOpacity>
             <Text style={styles.loginWith}>Đăng nhập với</Text>
             <View style={{ flexDirection: 'row', marginTop: 10 }}>
               <TouchableOpacity>

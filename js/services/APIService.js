@@ -1,10 +1,10 @@
-import { AsyncStorage } from 'react-native'
-
+import { AsyncStorage } from "react-native";
+window.btoa = require("Base64").btoa;
 
 function getFormData(object) {
-    const formData = new FormData();
-    Object.keys(object).forEach(key => formData.append(key, object[key]));
-    return formData;
+  const formData = new FormData();
+  Object.keys(object).forEach(key => formData.append(key, object[key]));
+  return formData;
 }
 export function APIRequestPOST(url, param, successCallback, errorCallback) {
     var formData = getFormData(param)
